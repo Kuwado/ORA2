@@ -60,7 +60,9 @@ const renderSidebar = (contentId) => {
   if (allItems.length > 0) {
     allItems.forEach((item) => {
       const title = item.querySelector(".section-header").textContent;
-      itemList.innerHTML += `<a class="w3-bar-item w3-button w3-hover-black sidebar-item" href="#${item.id}">${title}</a>`;
+      itemList.innerHTML += `<a class="w3-bar-item w3-button w3-hover-black sidebar-item" href="#${
+        item.id
+      }">${title !== "" ? title : "Chưa có tiêu đề"}</a>`;
     });
   }
 };
@@ -89,6 +91,19 @@ const changePage = (contentId) => {
   renderPage(contentId);
   const navbarItem = navbar.querySelector(`#${contentId}`);
   navbarItem.classList.add("active");
+};
+
+const activeSidebar = (activeId) => {
+  const itemList = sidebar.querySelector(".item-list");
+  const items = itemList.querySelectorAll("a");
+  if (items.length > 0) {
+    items.forEach((item) => {
+      const href = item.getAttribute("href");
+      if (href === `#${activeId}`) {
+        item.classList.add("active");
+      }
+    });
+  }
 };
 
 changePage("admin-page");

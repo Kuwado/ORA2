@@ -20,7 +20,7 @@ const renderAdminMenuTop = () => {
     const title = item.getAttribute("title");
     if (index === 0) {
       itemList.innerHTML += ` 
-        <div class="admin-item" data-value="${contentId}">
+        <div class="admin-item">
             <div class="admin-item-input">Trang chủ</div>
             <div class="admin-item-actions">
                 <button class="admin-item-btn" onclick="showAdminMenuLeft('${contentId}')"><i class="fa-solid fa-eye"></i></button>
@@ -29,8 +29,10 @@ const renderAdminMenuTop = () => {
         </div>`;
     } else if (index !== contents.length - 1) {
       itemList.innerHTML += ` 
-        <div class="admin-item" data-value="${item.id}">
-            <input class="admin-item-input" type="text" value="${title}" />
+        <div class="admin-item">
+            <input class="admin-item-input" ${
+              !title && `placeholder="Nhập tiêu đề"`
+            } type="text" value="${title}" />
             <div class="admin-item-actions">
                 <button class="admin-item-btn" onclick="showAdminMenuLeft('${contentId}')"><i class="fa-solid fa-eye"></i></button>
                 <button class="admin-item-btn" onclick="editNavbarItem(this, '${contentId}')"><i class="fa-solid fa-pencil"></i></button>
@@ -69,7 +71,8 @@ const addNavbarItem = (contentId) => {
   const newChild = document.createElement("div");
   newChild.id = `section-${count}`;
   newChild.className = "w3-container w3-padding-64 hidden";
-  newChild.title = "";
+  newChild.setAttribute("title", "");
+  newChild.setAttribute("count", "0");
   newChild.innerHTML = `<div class="container"></div>`;
 
   content.insertAdjacentElement("afterend", newChild);

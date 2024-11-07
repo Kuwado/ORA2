@@ -16,9 +16,9 @@ const renderAdminMenuLeft = (contentId) => {
 
   if (items.length === 0) {
     itemList.innerHTML += ` 
-    <div class="admin-item">
-        <div class="admin-item-actions">
-            <button class="admin-item-btn" onclick="addSidebarItem(0)"><i class="fa-solid fa-plus"></i></button>
+    <div class="admin-item" style="justify-content: center">
+        <div class="admin-item-actions" style="justify-content: center">
+          <button class="admin-item-btn" onclick="addFirstSidebarItem('${contentId}')"><i class="fa-solid fa-plus"></i></button>
         </div>
     </div>`;
   } else {
@@ -26,20 +26,22 @@ const renderAdminMenuLeft = (contentId) => {
       const title = item.querySelector(".section-header").textContent.trim();
       const childrenId = item.id;
       itemList.innerHTML += ` 
-          <div class="admin-item" data-value="${childrenId}">
-              <input class="admin-item-input" type="text" value="${title}" />
+          <div class="admin-item">
+              <input class="admin-item-input" ${
+                !title && `placeholder="Nhập tiêu đề"`
+              } type="text" value="${title}" />
               <div class="admin-item-actions">
-                  <button class="admin-item-btn" onclick="showAdminMenuLeft(this, '${childrenId}', '${contentId}')"><i class="fa-solid fa-eye"></i></button>
-                  <button class="admin-item-btn" onclick="editSidebarItem(this, '${childrenId}', '${contentId}')"><i class="fa-solid fa-pencil"></i></button>
-                  <button class="admin-item-btn" onclick="deleteSidebarItem('${childrenId}', '${contentId}')"><i class="fa-solid fa-xmark"></i></button>
-                  <button class="admin-item-btn" onclick="addSidebarItem('${childrenId}', '${contentId}')"><i class="fa-solid fa-plus"></i></button>
+                  <button class="admin-item-btn" onclick="showAdminMenuLayout('${contentId}', '${childrenId}')"><i class="fa-solid fa-eye"></i></button>
+                  <button class="admin-item-btn" onclick="editSidebarItem(this, '${contentId}', '${childrenId}')"><i class="fa-solid fa-pencil"></i></button>
+                  <button class="admin-item-btn" onclick="deleteSidebarItem('${contentId}', '${childrenId}')"><i class="fa-solid fa-xmark"></i></button>
+                  <button class="admin-item-btn" onclick="addSidebarItem('${contentId}', '${childrenId}')"><i class="fa-solid fa-plus"></i></button>
               </div>
           </div>`;
     });
   }
 };
 
-const editSidebarItem = (element, childrenId, contentId) => {
+const editSidebarItem = (element, contentId, childrenId) => {
   const currentChild = contentContainer.querySelector(`#${childrenId}`);
   const title = currentChild.querySelector(".section-header");
   const item = element.closest(".admin-item");
@@ -48,7 +50,7 @@ const editSidebarItem = (element, childrenId, contentId) => {
   renderAdminMenuLeft(contentId);
 };
 
-const deleteSidebarItem = (childrenId, contentId) => {
+const deleteSidebarItem = (contentId, childrenId) => {
   const currentChild = contentContainer.querySelector(`#${childrenId}`);
   const title = currentChild.querySelector(".section-header");
   const confirm = window.confirm(
@@ -60,4 +62,40 @@ const deleteSidebarItem = (childrenId, contentId) => {
   }
 };
 
-const addSidebarItem = (childrenId, contentId) => {};
+const addSidebarItem = (contentId, childrenId) => {
+  const content = contentContainer.querySelector(`#${contentId}`);
+  const count = parseInt(content.getAttribute("count")) + 1;
+  content.setAttribute("count", count);
+  const currentChild = content.querySelector(`#${childrenId}`);
+
+  const newChild = document.createElement("div");
+  newChild.id = `${contentId}-${count}`;
+  newChild.className = "content";
+  newChild.setAttribute("count", "0");
+  newChild.innerHTML = `<div class="section-header"></div><div class="section-body"></div>`;
+  currentChild.insertAdjacentElement("afterend", newChild);
+  currentChild.insertAdjacentHTML(
+    "afterend",
+    `<!-- Content-${contentId}-${count} -->`
+  );
+  renderAdminMenuLeft(contentId);
+};
+
+const addFirstSidebarItem = (contentId) => {
+  const content = contentContainer.querySelector(`#${contentId}`);
+  const count = parseInt(content.getAttribute("count")) + 1;
+  content.setAttribute("count", count);
+  const container = content.querySelector(".container");
+  container.innerHTML = `
+    <div id="${contentId}-1" class="content" count="0">
+      <div class="section-header"></div>
+      <div class="section-body"></div>
+    </div> 
+  `;
+  renderAdminMenuLeft(contentId);
+};
+
+const showAdminMenuLayout = (contentId, childrenId) => {
+  activeSidebar(childrenId);
+  renderAdminMenuLayout(contentId, childrenId);
+};

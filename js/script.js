@@ -10,7 +10,8 @@ let sidebarItems = sidebar.querySelectorAll(".sidebar-item");
 sidebarItems = Array.from(sidebarItems);
 // Content
 const contentContainer = document.getElementById("content-container");
-let contents = document.querySelectorAll("#content-container .w3-container");
+let count = contentContainer.querySelectorAll(".w3-container").length;
+// let contents = document.querySelectorAll("#content-container .w3-container");
 
 // Mở sidebar
 const w3_open = () => {
@@ -32,12 +33,13 @@ const w3_close = () => {
 const renderNavbar = () => {
   const itemList = navbar.querySelector(".item-list");
   itemList.innerHTML = "";
+  const contents = contentContainer.querySelectorAll(".w3-container");
   contents.forEach((item, index) => {
     itemList.innerHTML += `
         <a
           href="javascript:void(0)"
           onclick="changePage('${item.id}')"
-          id="course-info"
+          id="${item.id}"
           class="w3-bar-item w3-button navbar-item"
         >
           ${
@@ -55,85 +57,38 @@ const renderSidebar = (contentId) => {
   itemList.innerHTML += `<h4 class="w3-bar-item"><b>${content.getAttribute(
     "title"
   )}</b></h4>`;
-  allItems.forEach((item) => {
-    if (item.id !== "admin-page") {
+  if (allItems.length > 0) {
+    allItems.forEach((item) => {
       const title = item.querySelector(".section-header").textContent;
       itemList.innerHTML += `<a class="w3-bar-item w3-button w3-hover-black sidebar-item" href="#${item.id}">${title}</a>`;
-    }
-  });
-};
-
-const createSidebarItems = (list, title) => {
-  sidebar.innerHTML += `<h4 class="w3-bar-item"><b>${title}</b></h4>`;
-  if (list.length > 0)
-    list.map((item) => {
-      console.log(item);
-      sidebar.innerHTML += `<a class="w3-bar-item w3-button w3-hover-black sidebar-item" href="#${item.id}">${item.title}</a>`;
     });
-};
-
-const setSidebar = (id) => {
-  console.log(id);
-  sidebar.innerHTML = "";
-  let sidebarList = [];
-  const title = navbar.querySelector(`#${id}`).textContent;
-  switch (id) {
-    case "course-info":
-      sidebarList = courseInfoData;
-      break;
-    case "info":
-      sidebarList = infoData;
-      break;
-    case "web-tech":
-      sidebarList = webTechData;
-      break;
-    case "profile":
-      sidebarList = profileData;
-      break;
   }
-  createSidebarItems(sidebarList, title);
 };
 
-const setNavbar = () => {
-  navbarItems.forEach((item) => {
-    item.classList.remove("active");
-  });
-  console.log(currentNavbarItem);
-  currentNavbarItem.classList.add("active");
-};
-
-const setContent = () => {
+const renderContent = (contentId) => {
+  const contents = contentContainer.querySelectorAll(".w3-container");
   contents.forEach((item) => {
     item.classList.add("hidden");
   });
-  const currentSection = contentContainer.querySelector(
-    `#${currentNavbarItem.id}`
-  );
-  currentSection.classList.remove("hidden");
+  const content = contentContainer.querySelector(`#${contentId}`);
+  content.classList.remove("hidden");
 };
 
-const showContentPage = (id) => {
-  // setNavbar();
-  // setContent();
-  // setSidebar(currentNavbarItem.id);
+const renderPage = (contentId) => {
   renderNavbar();
-  renderSidebar(id);
+  if (contentId !== "admin-page") {
+    renderSidebar(contentId);
+  } else {
+    const itemList = sidebar.querySelector(".item-list");
+    itemList.innerHTML = "";
+  }
+  renderContent(contentId);
 };
 
-const changePage = (id) => {
-  currentNavbarItem = navbar.querySelector(`#${id}`);
-  showContentPage(id);
+const changePage = (contentId) => {
+  renderPage(contentId);
+  const navbarItem = navbar.querySelector(`#${contentId}`);
+  navbarItem.classList.add("active");
 };
 
-showContentPage("course-info");
-// changePage("admin-page");
-
-const updateNavbarItems = () => {
-  navbarItems = navbar.querySelectorAll(".navbar-item");
-  navbarItems = Array.from(navbarItems);
-};
-
-const updateSidebaItems = () => {
-  sidebarItems = sidebar.querySelectorAll(".sidebar-item");
-  sidebarItems = Array.from(sidebarItems);
-};
+changePage("admin-page");

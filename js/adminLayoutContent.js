@@ -1,5 +1,8 @@
 const adminLayoutContent = adminPage.querySelector("#admin-layout-content");
 const previewContent = adminLayoutContent.querySelector(".preview-layout");
+let currentContentId = "";
+let currentChildrenId = "";
+let currentLayoutId = "";
 
 const renderPreviewContent = () => {
   const numberItems = 128;
@@ -9,7 +12,9 @@ const renderPreviewContent = () => {
 };
 
 const renderAdminLayoutContent = (contentId, childrenId, layoutId) => {
-  previewContent.innerHTML = "";
+  currentContentId = contentId;
+  currentChildrenId = childrenId;
+  currentLayoutId = layoutId;
   hideAllAdminContents();
   adminLayoutContent.classList.remove("hidden");
   // Lấy content
@@ -20,14 +25,48 @@ const renderAdminLayoutContent = (contentId, childrenId, layoutId) => {
   const layout = currentChild.querySelector(`#${layoutId}`);
   const layoutTitle = layout.getAttribute("title");
   const layoutContent = layout.innerHTML;
-  //   const layouts = currentChild.querySelectorAll(".layout");
   // Hiển thị title trang
   const titleSpan = adminLayoutContent.querySelector("#admin-title");
   titleSpan.textContent = `${contentTitle} / ${childTitle} / ${layoutTitle}`;
   const previewTitle = adminLayoutContent.querySelector(".section-header");
   previewTitle.textContent = `Preiview ${layoutTitle}`;
-  // Hiển thị nội dung trang
-  const itemList = adminLayoutContent.querySelector(".admin-item-list");
-  itemList.innerHTML = "";
-  itemList.innerHTML += layoutContent;
+  // Hiển thị edit và preview
+  window.ckeditor.setData(layoutContent);
+  previewContent.innerHTML = "";
+  const layoutCopy = layout.cloneNode(true);
+  previewContent.appendChild(layoutCopy);
+};
+
+const updateAdmimnLayoutContent = (contentId, childrenId, layoutId) => {
+  // Lấy content
+  const content = contentContainer.querySelector(`#${contentId}`);
+  const contentTitle = content.getAttribute("title");
+  const currentChild = content.querySelector(`#${childrenId}`);
+  const childTitle = currentChild.querySelector(".section-header").textContent;
+  const layout = currentChild.querySelector(`#${layoutId}`);
+  const layoutTitle = layout.getAttribute("title");
+  const layoutContent = layout.innerHTML;
+  // Hiển thị title trang
+  const titleSpan = adminLayoutContent.querySelector("#admin-title");
+  titleSpan.textContent = `${contentTitle} / ${childTitle} / ${layoutTitle}`;
+  const previewTitle = adminLayoutContent.querySelector(".section-header");
+  previewTitle.textContent = `Preiview ${layoutTitle}`;
+  // Hiển thị edit và preview
+  previewContent.innerHTML = "";
+  const layoutCopy = layout.cloneNode(true);
+  previewContent.appendChild(layoutCopy);
+};
+
+const updateLayoutContent = () => {
+  const layout = contentContainer.querySelector(`#${currentLayoutId}`);
+  let data = window.ckeditor.getData();
+  console.log(data.tagName);
+  if (data.tagName === "figure") data = data.innerHTML;
+  console.log(data);
+  layout.innerHTML = data;
+  updateAdmimnLayoutContent(
+    currentContentId,
+    currentChildrenId,
+    currentLayoutId
+  );
 };

@@ -125,7 +125,6 @@ body {
 .active {
   color: #fff !important;
   background-color: #ffb300 !important;
-  pointer-events: none;
 }
 
 .section-body {

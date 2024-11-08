@@ -86,10 +86,3 @@ const showAdminMenuLeft = (contentId) => {
 };
 
 renderAdminMenuTop();
-
-/* <div id="section-${count}-1" class="content">
-<div class="section-header"></div>
-<div class="section-body">
-  <div id="section-${count}-1-content-1" style="grid-column: 1 / -1; grid-row: 1 / 1"></div>
-</div>
-</div> */

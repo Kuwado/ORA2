@@ -92,6 +92,9 @@ const changePage = (contentId) => {
   const navbarItem = navbar.querySelector(`#${contentId}`);
   navbarItem.classList.add("active");
   window.scrollTo(0, 0);
+  if (contentId === "admin-page") {
+    renderAdminMenuTop();
+  }
 };
 
 const activeSidebar = (activeId) => {
@@ -107,4 +110,4 @@ const activeSidebar = (activeId) => {
   }
 };
 
-changePage("admin-page");
+changePage("course-info");

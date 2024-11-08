@@ -105,3 +105,11 @@ const showAdminMenuLayout = (contentId, childrenId) => {
   activeSidebar(childrenId);
   renderAdminMenuLayout(contentId, childrenId);
 };
+
+const resetProfile = () => {
+  const resetProfile = document.querySelector("#profile-reset");
+  const profile = contentContainer.querySelector("#profile");
+  // Tạo bản sao
+  profile.innerHTML = resetProfile.innerHTML;
+  renderAdminMenuLeft("profile");
+};

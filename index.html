@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="./lib/css" />
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="./css/admin.css" />
+    <link rel="stylesheet" href="./css/reset-profile.css" />
   </head>
 
   <body>
@@ -32,44 +33,7 @@
           ><i class="fa fa-bars"></i
         ></a>
 
-        <div class="item-list">
-          <!-- <a
-            href="javascript:void(0)"
-            onclick="changePage('course-info')"
-            id="course-info"
-            class="w3-bar-item w3-button navbar-item"
-          >
-            <i class="fas fa-home"></i>
-          </a>
-          <a
-            href="javascript:void(0)"
-            onclick="changePage('info')"
-            id="info"
-            class="w3-bar-item w3-button navbar-item"
-            >Thông tin môn học</a
-          >
-          <a
-            href="javascript:void(0)"
-            onclick="changePage('web-tech')"
-            id="web-tech"
-            class="w3-bar-item w3-button navbar-item"
-            >Các công nghệ web</a
-          >
-          <a
-            href="javascript:void(0)"
-            onclick="changePage('profile')"
-            id="profile"
-            class="w3-bar-item w3-button navbar-item"
-            >Thông tin sinh viên</a
-          >
-          <a
-            href="javascript:void(0)"
-            onclick="changePage('admin-page')"
-            id="admin-page"
-            class="w3-bar-item w3-button navbar-item"
-            >Admin page</a
-          > -->
-        </div>
+        <div class="item-list"></div>
       </div>
     </div>
 
@@ -86,29 +50,7 @@
       >
         <i class="fa fa-remove"></i>
       </a>
-      <div class="item-list">
-        <h4 class="w3-bar-item"><b>Menu</b></h4>
-        <a
-          class="w3-bar-item w3-button w3-hover-black"
-          href="https://www.w3schools.com/w3css/tryw3css_templates_webpage.htm#"
-          >Link</a
-        >
-        <a
-          class="w3-bar-item w3-button w3-hover-black"
-          href="https://www.w3schools.com/w3css/tryw3css_templates_webpage.htm#"
-          >Link</a
-        >
-        <a
-          class="w3-bar-item w3-button w3-hover-black"
-          href="https://www.w3schools.com/w3css/tryw3css_templates_webpage.htm#"
-          >Link</a
-        >
-        <a
-          class="w3-bar-item w3-button w3-hover-black"
-          href="https://www.w3schools.com/w3css/tryw3css_templates_webpage.htm#"
-          >Link</a
-        >
-      </div>
+      <div class="item-list"></div>
     </nav>
 
     <!-- Overlay effect when opening sidebar on small screens -->
@@ -1187,7 +1129,11 @@
           <div class="content">
             <div class="admin-title">
               <span>Admin menu left: "<span id="admin-title"></span>"</span>
-              <button id="reload-profile-btn" class="admin-item-btn hidden">
+              <button
+                id="reload-profile-btn"
+                class="admin-item-btn hidden"
+                onClick="resetProfile()"
+              >
                 <i class="fa-solid fa-arrow-rotate-left"></i>
               </button>
             </div>
@@ -1216,6 +1162,391 @@
             <div id="editor"></div>
             <div class="section-header"></div>
             <div class="preview-layout"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 0: Thông tin sinh viên reset-->
+    <div
+      id="profile-reset"
+      class="w3-container w3-padding-64 hidden"
+      title="Thông tin sinh viên"
+      count="3"
+    >
+      <div class="container">
+        <!-- CV -->
+        <div id="profile-1" class="content" count="2">
+          <div class="section-header">CV</div>
+          <div class="section-body">
+            <div
+              id="profile-1-content-1"
+              class="layout"
+              title="Ảnh đại diện"
+              style="grid-column: 1 / 8; grid-row: 1 / 2"
+            >
+              <div class="avatar">
+                <img src="./assets/ava.jpg" alt="Student Photo" />
+              </div>
+            </div>
+
+            <div
+              id="profile-1-content-2"
+              class="layout"
+              title="Thông tin CV"
+              style="grid-column: 8 / -1; grid-row: 1 / 2"
+            >
+              <div class="profile-information">
+                <div class="details"><span>Họ và tên:</span> Lưu Việt Hoàn</div>
+                <div class="details"><span>Năm vào trường:</span> 2021</div>
+                <div class="details">
+                  <span>Bậc đào tạo:</span> KSCLC-TN-TT-VNVP-ICT
+                </div>
+                <div class="details">
+                  <span>Chương trình:</span> Công nghệ thông tin Việt-Nhật 2021
+                </div>
+                <div class="details"><span>MSSV:</span> 20215054</div>
+                <div class="details"><span>Giới tính:</span> Nam</div>
+                <div class="details"><span>Lớp:</span> Việt-Nhật 01-K66</div>
+                <div class="details"><span>Khóa học:</span> 66</div>
+                <div class="details">
+                  <span>Email:</span> Hoan.LV215054@sis.hust.edu.vn
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Các dự án tham gia -->
+        <div id="profile-2" class="content" count="6">
+          <div class="section-header">Các dự án tham gia</div>
+          <div class="section-body">
+            <div
+              id="profile-2-content-1"
+              class="layout"
+              title="Nội dung dự án 1"
+              style="grid-column: 1 / 12; grid-row: 1 / 2"
+            >
+              <div class="prj">
+                <div class="prj-header">
+                  <span class="prj-name">Trang web bán hàng "KuwaShop"</span>
+                  <span class="prj-time">3/2024 - 7/2024</span>
+                </div>
+                <div class="prj-body">
+                  <div class="prj-members">Số lượng thành viên: Cá nhân</div>
+                  <div class="prj-role">
+                    Vai trò: Lên ý tưởng, thiết kế cơ sở dữ liệu, lập trình
+                    Frontend và Backend
+                  </div>
+                  <div class="prj-result">
+                    Kết quả:
+                    <a href="https://github.com/Kuwado/KuwaShop" target="_blank"
+                      >https://github.com/Kuwado/KuwaShop</a
+                    >
+                  </div>
+                  <div class="prj-tech">
+                    Kỹ thuật sử dụng: Html, CSS, Java Script, PHP, Laravel,
+                    MySQL
+                  </div>
+                  <div class="prj-des">
+                    <span
+                      >Mô tả: Sản phẩm về trang web bán hàng (quần áo, giày dép,
+                      ...) hướng tới hai đối tượng sử dụng chính là người bán
+                      hàng và người mua hàng</span
+                    >
+                    <ol>
+                      <li>
+                        <span>Người bán hàng (admin): </span>
+                        <ul>
+                          <li>Thêm, sửa, xóa sản phẩm, loại sản phẩm</li>
+                          <li>Thống kê doanh thu</li>
+                          <li>Duyệt đơn đặt hàng</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span>Người mua hàng:</span>
+                        <ul>
+                          <li>Xem, chọn, thêm hàng vào giỏ</li>
+                          <li>Đặt hàng</li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              id="profile-2-content-2"
+              class="layout"
+              title="Hình ảnh dự án 1"
+              style="grid-column: 12 / -1; grid-row: 1 / 2"
+            >
+              <a
+                class="prj-images"
+                href="https://github.com/Kuwado/KuwaShop"
+                target="_blank"
+              >
+                <img
+                  class="prj-image"
+                  src="assets/images/Profile/prj1_1.png"
+                  alt="avatar"
+                />
+                <img
+                  class="prj-image"
+                  src="assets/images/Profile/prj1_2.png"
+                  alt="avatar"
+                />
+              </a>
+            </div>
+
+            <div
+              id="profile-2-content-3"
+              class="layout"
+              title="Nội dung dự án 2"
+              style="grid-column: 1 / 12; grid-row: 2 / 3"
+            >
+              <div class="prj">
+                <div class="prj-header">
+                  <span class="prj-name">Trang web xem phim "KuwaMovie"</span>
+                  <span class="prj-time">7/2024 - 7/2024</span>
+                </div>
+                <div class="prj-body">
+                  <div class="prj-members">Số lượng thành viên: Cá nhân</div>
+                  <div class="prj-role">
+                    Vai trò: Thiết kế và lập trình trang web
+                  </div>
+                  <div class="prj-result">
+                    Kết quả:
+                    <a href="https://kuwa-movie.vercel.app" target="_blank"
+                      >https://kuwa-movie.vercel.app</a
+                    >
+                  </div>
+                  <div class="prj-tech">
+                    Kỹ thuật sử dụng: ReactJs, Tailwind CSS
+                  </div>
+                  <div class="prj-des">
+                    <span
+                      >Mô tả: Xây dựng Front-end của trang web xem phim. Người
+                      dùng có thể:
+                    </span>
+                    <ol>
+                      <li>Xem danh sách phim</li>
+                      <li>Xem chi tiết phim</li>
+                      <li>Chế độ sáng tối</li>
+                      <li>Có thiết kế responsive</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              id="profile-2-content-4"
+              class="layout"
+              title="Hình ảnh dự án 2"
+              style="grid-column: 12 / -1; grid-row: 2 / 3"
+            >
+              <a
+                class="prj-images"
+                href="https://kuwa-movie.vercel.app"
+                target="_blank"
+              >
+                <img
+                  class="prj-image"
+                  src="assets/images/Profile/prj2_1.png"
+                  alt="prj"
+                />
+                <img
+                  class="prj-image"
+                  src="assets/images/Profile/prj2_2.png"
+                  alt="prj"
+                />
+              </a>
+            </div>
+
+            <div
+              id="profile-2-content-5"
+              class="layout"
+              title="Nội dung dự án 3"
+              style="grid-column: 1 / 12; grid-row: 3 / 4"
+            >
+              <div class="prj">
+                <div class="prj-header">
+                  <span class="prj-name"
+                    >Ứng dụng đặt hàng xuất nhập khẩu "KuwaOrder"</span
+                  >
+                  <span class="prj-time">4/2024 - 5/2024</span>
+                </div>
+                <div class="prj-body">
+                  <div class="prj-members">Số lượng thành viên: 5 người</div>
+                  <div class="prj-role">
+                    Vai trò: Nhóm trưởng, thiết kế khung giao diện, thiết kế
+                    database, code chức năng đặt hàng của bộ phận bán hàng và
+                    chức năng tạo đơn hàng của bộ phận đặt hàng
+                  </div>
+                  <div class="prj-result">
+                    Kết quả:
+                    <a
+                      href="https://github.com/Kuwado/2023.2-147730-02/tree/main/Final-Project"
+                      target="_blank"
+                      >https://github.com/Kuwado/2023.2-147730-02/tree/main/Final-Project</a
+                    >
+                  </div>
+                  <div class="prj-tech">
+                    Kỹ thuật sử dụng: JavaFX, Java, MySQL, Junit5
+                  </div>
+                  <div class="prj-des">
+                    <span
+                      >Mô tả: Sản phẩm về ứng dụng đặt hàng xuất khẩu với 4 đối
+                      tượng người dùng chính là bộ phận bán hàng, bộ phận đặt
+                      hàng, bộ phận kho và các sites nhập khẩu</span
+                    >
+                    <ol>
+                      <li>
+                        <span>Bộ phận bán hàng:</span>
+                        <ul>
+                          <li>Tạo các đơn đặt hàng gửi đến bộ phận đặt hàng</li>
+                          <li>Quản lý thông tin sản phẩm</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span>Bộ phận đặt hàng:</span>
+                        <ul>
+                          <li>
+                            Tạo các đơn mua hàng gửi đến các site nhập khẩu
+                          </li>
+                          <li>Xử lý các đơn hủy</li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span>Bộ phận kho:</span>
+                        <ul>
+                          <li>
+                            Nhập số lượng sản phẩm vào kho, quản lý sản phẩm
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span>Sites nhập khẩu:</span>
+                        <ul>
+                          <li>Quản lý thông tin site</li>
+                          <li>Duyệt đơn mua hàng</li>
+                        </ul>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              id="profile-2-content-6"
+              class="layout"
+              title="Hình ảnh dự án 3"
+              style="grid-column: 12 / -1; grid-row: 3 / 4"
+            >
+              <a
+                class="prj-images"
+                href="https://github.com/Kuwado/KuwaOrder"
+                target="_blank"
+              >
+                <img
+                  class="prj-image"
+                  src="assets/images/Profile/prj3_1.png"
+                  alt="avatar"
+                />
+                <img
+                  class="prj-image"
+                  src="assets/images/Profile/prj3_2.png"
+                  alt="avatar"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Sinh hoạt cộng đồng -->
+        <div id="profile-3" class="content" count="1">
+          <div class="section-header">Sinh hoạt cộng đồng</div>
+          <div class="section-body">
+            <div
+              id="profile-3-content-1"
+              class="layout"
+              title="Dự án"
+              style="grid-column: 1 / -1; grid-row: 1 / 2"
+            >
+              <div class="prj">
+                <div class="prj-header">
+                  <span class="prj-name"
+                    >Tham gia tổ chức từ thiện hỗ trợ người vô gia cư</span
+                  >
+                </div>
+                <div class="prj-body">
+                  <span>
+                    Vào mỗi dịp cuối tuần, tôi tham gia cùng một nhóm tình
+                    nguyện viên tại địa phương để hỗ trợ người vô gia cư trong
+                    thành phố. Tổ chức từ thiện này nhằm cung cấp những vật dụng
+                    thiết yếu như thực phẩm, nước uống, áo ấm, và các vật dụng
+                    vệ sinh cá nhân cho những người có hoàn cảnh khó khăn. Chúng
+                    tôi thường tập trung tại một địa điểm cố định, chuẩn bị các
+                    phần ăn nóng hổi, chia thành từng gói cẩn thận và sau đó
+                    chia nhau đi đến những khu vực mà người vô gia cư thường tụ
+                    tập.
+                  </span>
+                  <span
+                    >Những buổi gặp gỡ và trò chuyện với những người có hoàn
+                    cảnh khó khăn giúp tôi thấu hiểu hơn về cuộc sống của họ.
+                    Nhiều người trong số họ có những câu chuyện rất cảm động về
+                    những khó khăn mà họ phải vượt qua. Không chỉ dừng lại ở
+                    việc trao tặng đồ ăn, chúng tôi cũng cố gắng tạo ra một
+                    không gian để họ cảm thấy được lắng nghe và chia sẻ. Việc
+                    tham gia vào hoạt động này không chỉ mang lại cho tôi sự
+                    đồng cảm, mà còn giúp tôi nhận thức được tầm quan trọng của
+                    việc giúp đỡ người khác và tạo ra sự thay đổi tích cực, dù
+                    nhỏ bé, trong cộng đồng.</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="profile-3-content-2"
+              class="layout"
+              title="Dự án"
+              style="grid-column: 1 / -1; grid-row: 2 / 3"
+            >
+              <div class="prj">
+                <div class="prj-header">
+                  <span class="prj-name"> Chiến dịch làm sạch bãi biển</span>
+                </div>
+                <div class="prj-body">
+                  <span>
+                    Một hoạt động khác mà tôi rất yêu thích là tham gia các
+                    chiến dịch làm sạch bãi biển. Vào mỗi dịp hè, cùng với một
+                    nhóm bạn và các tình nguyện viên, chúng tôi tổ chức các buổi
+                    dọn rác tại bãi biển gần thành phố. Mỗi người được trang bị
+                    bao tay, túi rác lớn và công cụ cần thiết để thu gom rác
+                    thải như chai nhựa, túi nilon, vỏ chai, và các loại rác
+                    khác.
+                  </span>
+                  <span
+                    >Hoạt động làm sạch bãi biển không chỉ mang lại cho tôi cảm
+                    giác vui vẻ khi có thể đóng góp vào việc bảo vệ môi trường,
+                    mà còn giúp tôi nhận ra mức độ nghiêm trọng của ô nhiễm do
+                    rác thải nhựa gây ra. Bên cạnh việc dọn dẹp, chúng tôi còn
+                    tận dụng cơ hội này để nâng cao ý thức cộng đồng về bảo vệ
+                    môi trường. Chúng tôi thường gặp gỡ và trò chuyện với các
+                    gia đình đang vui chơi tại bãi biển, chia sẻ với họ về những
+                    ảnh hưởng của rác thải đến hệ sinh thái biển và khuyến khích
+                    họ phân loại rác đúng cách, giảm thiểu sử dụng nhựa dùng một
+                    lần.</span
+                  >
+                  <span
+                    >Tham gia hoạt động này giúp tôi thấy rõ rằng, chỉ cần mỗi
+                    người góp một chút công sức, chúng ta có thể cùng nhau bảo
+                    vệ và cải thiện môi trường sống. Những trải nghiệm này không
+                    chỉ giúp tôi trưởng thành hơn mà còn khơi dậy trong tôi ý
+                    thức trách nhiệm đối với cộng đồng và môi trường.</span
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

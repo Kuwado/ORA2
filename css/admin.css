@@ -60,11 +60,15 @@
 .admin-item-btn {
   width: 40px;
   height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: #1b337f;
   color: #fafafa;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .admin-item-btn:hover {
@@ -137,8 +141,13 @@
   min-height: 50px;
 }
 
-#reload-profile-btn {
+#reload-profile-btn,
+#help-btn {
   margin-left: 20px;
+}
+
+#reload-profile-btn.hidden {
+  display: none;
 }
 
 @media (max-width: 500px) {

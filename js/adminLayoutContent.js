@@ -57,12 +57,19 @@ const updateAdmimnLayoutContent = (contentId, childrenId, layoutId) => {
   previewContent.appendChild(layoutCopy);
 };
 
+const checkData = (data) => {
+  if (data.startsWith(`<figure class="table">`)) {
+    let returnData = data.slice(22);
+    returnData = returnData.slice(0, -9);
+    return returnData;
+  }
+  return data;
+};
+
 const updateLayoutContent = () => {
   const layout = contentContainer.querySelector(`#${currentLayoutId}`);
   let data = window.ckeditor.getData();
-  console.log(data.tagName);
-  if (data.tagName === "figure") data = data.innerHTML;
-  console.log(data);
+  data = checkData(data);
   layout.innerHTML = data;
   updateAdmimnLayoutContent(
     currentContentId,

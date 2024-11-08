@@ -1,6 +1,12 @@
 const adminMenuLeft = adminPage.querySelector("#admin-menu-left");
 
 const renderAdminMenuLeft = (contentId) => {
+  const button = adminMenuLeft.querySelector("#reload-profile-btn");
+  if (contentId === "profile") {
+    button.classList.remove("hidden");
+  } else {
+    button.classList.add("hidden");
+  }
   renderSidebar(contentId);
   hideAllAdminContents();
   adminMenuLeft.classList.remove("hidden");

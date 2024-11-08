@@ -91,6 +91,7 @@ const changePage = (contentId) => {
   renderPage(contentId);
   const navbarItem = navbar.querySelector(`#${contentId}`);
   navbarItem.classList.add("active");
+  window.scrollTo(0, 0);
 };
 
 const activeSidebar = (activeId) => {
